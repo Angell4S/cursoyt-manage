@@ -1,0 +1,64 @@
+<odoo>
+   <data>
+      <record id='dev_1' model='res.partner'>
+         <field name='name'>Beitris Marcham</field>
+         <field name='access_code'>49070848T
+         </field>
+         <field name='is_dev'>True</field>
+      </record>
+      <record id='dev_2' model='res.partner'>
+         <field name='name'>Kassey Arnull</field>
+         <field name='access_code'>21227859V
+         </field>
+         <field name='is_dev'>True</field>
+      </record>
+      <record id='dev_3' model='res.partner'>
+         <field name='name'>Maye Zukerman</field>
+         <field name='access_code'>53999138D
+         </field>
+         <field name='is_dev'>True</field>
+      </record>
+      <record id='dev_4' model='res.partner'>
+         <field name='name'>Cal Wahncke</field>
+         <field name='access_code'>13094932W
+         </field>
+         <field name='is_dev'>True</field>
+      </record>
+      <record id='dev_5' model='res.partner'>
+         <field name='name'>Flory Manueli</field>
+         <field name='access_code'>44907287U
+         </field>
+         <field name='is_dev'>True</field>
+      </record>
+      <record id='dev_6' model='res.partner'>
+         <field name='name'>Ronni Layfield</field>
+         <field name='access_code'>49661371X
+         </field>
+         <field name='is_dev'>True</field>
+      </record>
+      <record id='dev_7' model='res.partner'>
+         <field name='name'>Leila Mervyn</field>
+         <field name='access_code'>89106606L
+         </field>
+         <field name='is_dev'>True</field>
+      </record>
+      <record id='dev_8' model='res.partner'>
+         <field name='name'>Karen Rowland</field>
+         <field name='access_code'>33624658H
+         </field>
+         <field name='is_dev'>True</field>
+      </record>
+      <record id='dev_9' model='res.partner'>
+         <field name='name'>Dottie Krzyzaniak</field>
+         <field name='access_code'>34007049U
+         </field>
+         <field name='is_dev'>True</field>
+      </record>
+      <record id='dev_10' model='res.partner'>
+         <field name='name'>Filberto Balog</field>
+         <field name='access_code'>27785657H
+         </field>
+         <field name='is_dev'>True</field>
+      </record>
+   </data>
+</odoo>

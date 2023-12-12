@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   <data>
+
+      <!-- creando Vista tipo formulario para el modelo historia -->
+      <record model="ir.ui.view" id="manage.history_form">
+         <field name="name">manage history form</field> <!-- Asignamos nombre de la vista-->
+         <field name="model">manage.history</field> <!-- Indicamos sobre que modelo va a actuar esta
+         vista -->
+         <field name="arch" type="xml"> <!-- el nombre arch se refiere a la arquitectura, Añadiendo
+            el tipo de archivo xml que mostrara la vista-->
+            <form> <!--Vista
+               de tipo arbol, donde mostrara el campo "name" del modelo, que tiene que existir en el
+               modelo -->
+               <group>
+                  <!-- el nombre en el campo name, debe ser igual a nombre que se puso en el modelo -->
+                  <field name="project" />
+                  <field name="name" />
+                  <field name="description" />
+                  <field name="tasks" />
+                  <field name="used_technologies" />
+               </group>
+            </form>
+         </field>
+      </record>
+
+      <!-- acciones: mostrar el formulario history -->
+      <record model="ir.actions.act_window" id="manage.action_history_window">
+         <field name="name">manage history window</field> <!-- Asignamos un nombre -->
+         <field name="res_model">manage.history</field> <!-- Indicamos a que modelo esta relacionado -->
+         <field name="view_mode">tree,form</field> <!-- El orden que queremos que se muestren las
+         vistas -->
+      </record>
+
+      <!-- Creando submenu para ver la vista history -->
+      <menuitem name="histories" id="manage.menu_1_history_list" parent="manage.menu_1"
+         action="manage.action_history_window" />
+
+   </data>
+
+
+</odoo>

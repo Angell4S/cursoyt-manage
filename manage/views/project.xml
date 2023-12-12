@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   <data>
+
+      <!-- creando Vista tipo formulario para el modelo project -->
+      <record model="ir.ui.view" id="manage.project_form">
+         <field name="name">manage project form</field> <!-- Asignamos nombre de la vista-->
+         <field name="model">manage.project</field> <!-- Indicamos sobre que modelo va a actuar esta
+         vista -->
+         <field name="arch" type="xml"> <!-- el nombre arch se refiere a la arquitectura, Añadiendo
+            el tipo de archivo xml que mostrara la vista-->
+            <form> <!--Vista
+               de tipo arbol, donde mostrara el campo "name" del modelo, que tiene que existir en el
+               modelo -->
+               <group>
+                  <!-- el nombre en el campo name, debe ser igual a nombre que se puso en el modelo -->
+                  <field name="name" />
+                  <field name="descriptiones" />
+                  <field name="histories" />
+                  <field name="is_developement"/>
+                  <field name="is_read"/>
+                  <field name="is_tree"/>
+                  <field name="is_test1" />
+                  <field name="is_test2" />
+                  <field name="is_test3" />
+                  <field name="is_test4" />
+                  <field name="is_test5" />
+                  <field name="is_test6" />
+               </group>
+            </form>
+         </field>
+      </record>
+
+      <!-- acciones: mostrar el formulario project -->
+      <record model="ir.actions.act_window" id="manage.action_project_window">
+         <field name="name">manage project window</field> <!-- Asignamos un nombre -->
+         <field name="res_model">manage.project</field> <!-- Indicamos a que modelo esta relacionado -->
+         <field name="view_mode">tree,form</field> <!-- El orden que queremos que se muestren las
+         vistas -->
+      </record>
+
+      <!-- Creando submenu para ver la vista project -->
+      <menuitem name="projects" id="manage.menu_1_project_list" parent="manage.menu_1"
+         action="manage.action_project_window" />
+
+   </data>
+
+
+</odoo>

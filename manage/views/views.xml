@@ -1,0 +1,122 @@
+<odoo>
+  <data>
+
+    <!-- creando Vista tipo formulario para la herencia res.partnet(contacto) -->
+    <record model="ir.ui.view" id="manage.devs_partner_form">
+      <field name="name">manage devs form</field> <!-- Asignamos nombre de la vista-->
+      <field name="model">res.partner</field> <!-- Indicamos sobre que modelo va a actuar esta vista -->
+      <field name="inherit_id" ref="base.view_partner_form"></field> <!-- Indicamos el id del formulario a heredar -->
+      <field name="mode">primary</field> <!-- esta funcion creara una nueva vista donde podremos añadir información que querramos  -->
+      <field name="arch" type="xml"> <!-- el nombre arch se refiere a la arquitectura, Añadiendo el tipo de archivo xml que mostrara la vista-->
+        <xpath expr="//sheet/notebook/page[@name='internal_notes']" position="after">
+          <page name="devs" string="Devs" attrs="{'invisible':[('is_dev', '=', False)]}"> <!-- Condicionando que solo se muestren la pagina devs para desarrolladores -->
+            <group>
+              <group>
+                <field name="is_dev" attrs="{'invisible':True}"></field>
+                <field name="access_code"></field>
+                <field name="technologies"></field>
+                <field 
+                  name="tasks"
+                  context="{'current_developer':active_id}"></field>
+                <field name="bugs"></field>
+                <field name="improvements"></field>
+              </group>
+            </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+
+
+
+
+    
+
+
+    <!-- acciones: abriendo vistas en modelos (acciones de ventana) -->
+    <!-- Permitira abrir la vista correspondiente al relacionarlo con un submenu -->
+    <!-- Registro del modelo acciones de ventana model="ir.actions.act_window", tendra un identificador unico id="manage.action_task_window"-->
+
+    <!-- acciones: mostrar el formulario developer(es herencia) -->
+    <record model="ir.actions.act_window" id="manage.action_developer_window"> 
+      <field name="name">manage developer window</field> <!-- Asignamos un nombre -->
+      <field name="res_model">res.partner</field> <!-- Indicamos a que modelo esta relacionado -->
+      <field name="view_mode">tree,form</field> <!-- El orden que queremos que se muestren las vistas -->
+      <field name="domain">[('is_dev', '=', True)]</field> <!-- esta sintaxis hara que al crear un nuevo contactos desde manage, se active autormaticamente is_dev -->
+      <field name="context">{'default_is_dev':True}</field> <!-- Campo que guarda un diccionario de cosas que se le pasaran al cliente web, para que el cliente aplique esos valores cuando se le muestre la info -->
+    </record>
+
+    <!-- acciones: mostrar el formulario de la vista tree de res.partner(contactos) -->
+    <record model="ir.actions.act_window.view" id="manage.action_view_developer_tree">
+      <field name="sequence" eval="1"></field> 
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="base.view_partner_tree"></field>
+      <field name="act_window_id" ref="manage.action_developer_window"></field>
+    </record>
+
+    <!-- acciones: mostrar el formulario de la vista form que cree donde solo me muestra las tecnologias del contacto -->
+    <record model="ir.actions.act_window.view" id="manage.action_developer_form">
+      <field name="sequence" eval="2"></field> 
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="manage.devs_partner_form"></field>
+      <field name="act_window_id" ref="manage.action_developer_window"></field>
+    </record>
+
+
+
+
+
+
+
+    <!-- acciones: mostrar el formulario technologies -->
+    <record model="ir.actions.act_window" id="manage.action_technology_window"> 
+      <field name="name">manage technology window</field> <!-- Asignamos un nombre -->
+      <field name="res_model">manage.technology</field> <!-- Indicamos a que modelo esta relacionado -->
+      <field name="view_mode">tree,form</field> <!-- El orden que queremos que se muestren las vistas -->
+    </record>
+
+    <!-- acción del servidor a la de arriba -->
+<!--
+    <record model="ir.actions.server" id="manage.action_server">
+      <field name="name">manage server</field>
+      <field name="model_id" ref="model_manage_manage"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item o Elemento del menú superior -->
+
+    <menuitem name="Manage" id="manage.menu_root"/> <!-- Creamos el menú principal llamado Manage-->
+
+    <!-- menu categories o categorías de menú -->
+
+    <menuitem name="Management" id="manage.menu_1" parent="manage.menu_root"/> <!-- Creamos una submenu que estara dentro del menu principal-->
+    <!-- <menuitem name="Menu 2" id="manage.menu_2" parent="manage.menu_root"/>
+-->
+    <!-- actions o Acciones -->
+
+
+
+
+
+
+    <!-- Creando submenu para ver la vista technologies -->
+    <menuitem name="technologies" id="manage.menu_1_technology_list" parent="manage.menu_1" 
+              action="manage.action_technology_window"/> 
+
+    <!-- Creando submenu para ver la vista developer -->
+    <menuitem name="Devs" id="manage.menu_1_devs_list" parent="manage.menu_1" 
+              action="manage.action_developer_window"/> 
+  <!-- <menuitem name="Server to list" id="manage" parent="manage.menu_2"
+              action="manage.action_server"/>
+-->
+  </data>
+</odoo>

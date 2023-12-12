@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   <data>
+
+      <!-- crear Vista tipo formulario para sprint -->
+      <record model="ir.ui.view" id="manage.sprint_form">
+         <field name="name">manage sprint form</field> <!-- Asignamos nombre de la vista-->
+         <field name="model">manage.sprint</field> <!-- Indicamos sobre que modelo va a actuar esta
+         vista -->
+         <field name="arch" type="xml"> <!-- el nombre arch se refiere a la arquitectura, Añadiendo
+            el tipo de archivo xml que mostrara la vista-->
+            <form> <!--Vista
+               de tipo arbol, donde mostrara el campo "name" del modelo, que tiene que existir en el
+               modelo -->
+               <group>
+                  <field name="project" />
+                  <field name="name" />
+                  <field name="description" />
+                  <field name="duration" />
+                  <field name="start_date" />
+                  <field name="end_date" />
+                  <field name="tasks" />
+               </group>
+            </form>
+         </field>
+      </record>
+
+      <!-- acciones: mostrar el formulario sprint -->
+      <record model="ir.actions.act_window" id="manage.action_sprint_window">
+         <field name="name">manage sprint window</field> <!-- Asignamos un nombre -->
+         <field name="res_model">manage.sprint</field> <!-- Indicamos a que modelo esta relacionado -->
+         <field name="view_mode">tree,form</field> <!-- El orden que queremos que se muestren las
+         vistas -->
+      </record>
+
+      <!-- Creando submenu para ver la vista sprint -->
+      <menuitem name="sprints" id="manage.menu_1_sprint_list" parent="manage.menu_1"
+         action="manage.action_sprint_window" />
+
+   </data>
+
+
+</odoo>
